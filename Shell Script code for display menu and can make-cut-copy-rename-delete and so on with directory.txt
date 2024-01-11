@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# Function to display the menu
+show_menu() {
+    clear
+    echo "File and Directory Management"
+    echo "-----------------------------"
+    echo "1. Move File"
+    echo "2. Rename File"
+    echo "3. Create Directory"
+    echo "4. Delete File"
+    echo "5. Exit"
+    echo
+}
+
+# Function to move a file
+move_file() {
+    read -p "Enter the file to move: " file
+    read -p "Enter the destination directory: " destination
+    mv "$file" "$destination"
+    echo "File moved successfully!"
+    read -n 1 -s -r -p "Press any key to continue..."
+}
+
+# Function to rename a file
+rename_file() {
+    read -p "Enter the file to rename: " file
+    read -p "Enter the new name: " new_name
+    mv "$file" "$new_name"
+    echo "File renamed successfully!"
+    read -n 1 -s -r -p "Press any key to continue..."
+}
+
+# Function to create a directory
+create_directory() {
+    read -p "Enter the name of the directory to create: " directory
+    mkdir "$directory"
+    echo "Directory created successfully!"
+    read -n 1 -s -r -p "Press any key to continue..."
+}
+
+# Function to delete a file
+delete_file() {
+    read -p "Enter the file to delete: " file
+    rm "$file"
+    echo "File deleted successfully!"
+    read -n 1 -s -r -p "Press any key to continue..."
+}
+
+# Main loop
+while true; do
+    show_menu
+
+    read -p "Enter your choice (1-5): " choice
+    echo
+
+    case $choice in
+        1) move_file ;;
+        2) rename_file ;;
+        3) create_directory ;;
+        4) delete_file ;;
+        5) exit ;;
+        *) echo "Invalid choice. Please enter a number from 1 to 5." ;;
+    esac
+done
